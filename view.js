@@ -160,7 +160,7 @@ window.onclick = event => {
 
 popUpAll = ele => {
   document.getElementById("popUp_content").innerHTML = ele.content;
-  document.getElementById("iHead").innerHTML = ele.title;
+  document.getElementById("iHead").innerHTML = ele.source.name;
   let modal = document.getElementById("myModal");
   modal.style.display = "block";
 };
