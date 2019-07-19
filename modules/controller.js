@@ -1,4 +1,6 @@
-class Controller {
+import { View } from "./view.js";
+
+export class Controller {
   constructor(Md) {
     this.Model = Md;
     new View(this);
@@ -40,12 +42,8 @@ class Controller {
     document.getElementById("iHead").innerHTML = ele.source.name;
     let modal = document.getElementById("myModal");
     modal.style.display = "block";
+    document
+      .getElementById("myModal")
+      .addEventListener("click", this.closePopUp);
   };
 }
-window.onclick = event => {
-  modal = document.getElementById("myModal");
-
-  if (event.target == modal) {
-    modal.style.display = "none";
-  }
-};

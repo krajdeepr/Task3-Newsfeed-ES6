@@ -1,4 +1,4 @@
-class View {
+export class View {
   constructor(Cnt) {
     this.Controller = Cnt;
     this.gData = [];
@@ -57,12 +57,12 @@ class View {
             type="button">Continue Reading</button></div>`;
     });
     completeData += `<div id="myModal" class="modal"><div class="modal-content"><div class="modal-header">
-        <span onclick="closePopUp()" class="close">&times;</span><h2 id="iHead"></h2></div>
+        <span id="closePopUp" class="close">&times;</span><h2 id="iHead"></h2></div>
         <div id="popUp_content" class="modal-body"><p>
         </p></div>
         <div class="modal-footer">
         <h3>Till Date</h3></div></div></div><div class="side">
-          <label class="side-label"><strong>SELECT CATEGORY</strong></label><br />
+          <label class="side-label" ><strong>SELECT CATEGORY</strong></label><br />
           <select id="side-select">
           ${ichannel}
           </select><br /><br />
@@ -75,6 +75,9 @@ class View {
       document.getElementById(`myBtn${i}`).addEventListener("click", () => {
         this.Controller.popUpAll(ele);
       });
+    });
+    document.getElementById(`closePopUp`).addEventListener("click", () => {
+      this.Controller.closePopUp();
     });
     var select = () => {
       var x = document.getElementById("side-select").value;
@@ -100,7 +103,7 @@ class View {
                      </p>
                      <button id="myBtn${index}" class="total-button"  type="button">Continue Reading</button>
                      <div id="myModal" class="modal"><div class="modal-content"><div class="modal-header">
-                     <span onclick="this.controller.closePopUp()" class="close">&times;</span><h2 id="iHead"></h2></div>
+                     <span id="closePopUp" class="close">&times;</span><h2 id="iHead"></h2></div>
                      <div id="popUp_content" class="modal-body"><p>
                      </p></div>
                      <div class="modal-footer">
@@ -123,6 +126,9 @@ class View {
           this.Controller.popUpAll(elemArray[k]);
         });
       }
+      document.getElementById(`closePopUp`).addEventListener("click", () => {
+        this.Controller.closePopUp();
+      });
     };
   };
 }
