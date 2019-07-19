@@ -61,7 +61,7 @@ export class View {
         <div id="popUp_content" class="modal-body"><p>
         </p></div>
         <div class="modal-footer">
-        <h3>Till Date</h3></div></div></div><div class="side">
+        <h3>Till Date</h3></div></div></div></div><div class="side">
           <label class="side-label" ><strong>SELECT CATEGORY</strong></label><br />
           <select id="side-select">
           ${ichannel}
@@ -108,12 +108,6 @@ export class View {
                      </p></div>
                      <div class="modal-footer">
                      <h3>Till Date</h3></div></div></div></div>`;
-          if (index == 0) {
-            html += `<div class="side"><label class="side-label"><strong>SELECT CATEGORY</strong></label><br />
-            <select id="side-select">
-            ${ichannel}
-            </select><br /><br /></div>`;
-          }
           document.getElementById("total").innerHTML = html;
           index++;
         }

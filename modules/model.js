@@ -1,4 +1,4 @@
-import {Controller} from './controller.js';
+import { Controller } from "./controller.js";
 export class Model {
   constructor() {
     this.gData = [];
@@ -20,10 +20,9 @@ export class Model {
         this.fetch_Channels();
         new Controller(this);
       })
-      .catch(error=>{
+      .catch(error => {
         console.log(error);
       });
-
   };
 
   fetch_Channels = () => {
