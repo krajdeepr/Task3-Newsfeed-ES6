@@ -4,7 +4,7 @@ class Model {
     this.channelList = [];
     this.url =
       "https://newsapi.org/v2/top-headlines?" +
-      "country=us&" +
+      "language=en&country=in&category=sports&" +
       "apiKey=e8526ab8f30443fd9be16639d051dd48";
     this.req = new Request(this.url);
 

@@ -19,7 +19,7 @@ class View {
     document
       .getElementById("validateEvent")
       .addEventListener("click", function() {
-        validate();
+        this.Controller.validate();
       });
   };
 
@@ -73,7 +73,7 @@ class View {
     });
     this.Controller.getData().forEach((ele, i) => {
       document.getElementById(`myBtn${i}`).addEventListener("click", () => {
-        popUpAll(ele);
+        this.Controller.popUpAll(ele);
       });
     });
     var select = () => {
@@ -100,7 +100,7 @@ class View {
                      </p>
                      <button id="myBtn${index}" class="total-button"  type="button">Continue Reading</button>
                      <div id="myModal" class="modal"><div class="modal-content"><div class="modal-header">
-                     <span onclick="closePopUp()" class="close">&times;</span><h2 id="iHead"></h2></div>
+                     <span onclick="this.controller.closePopUp()" class="close">&times;</span><h2 id="iHead"></h2></div>
                      <div id="popUp_content" class="modal-body"><p>
                      </p></div>
                      <div class="modal-footer">
@@ -120,47 +120,9 @@ class View {
       });
       for (let k = 0; k < elemArray.length; k++) {
         document.getElementById(`myBtn${k}`).addEventListener("click", () => {
-          popUpAll(elemArray[k]);
+          this.Controller.popUpAll(elemArray[k]);
         });
       }
     };
   };
 }
-
-validate = () => {
-  emailData = JSON.parse(window.localStorage.getItem("emails"));
-  if (emailData == null) {
-    var emailData = [];
-  }
-  var email = document.getElementById("side-input").value;
-  if (
-    /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/.test(email)
-  ) {
-    emailData.push(email);
-    window.localStorage.setItem("emails", JSON.stringify(emailData));
-    alert("You have entered an valid email address!");
-    return true;
-  } else {
-    alert("You have entered an invalid email address!");
-    return false;
-  }
-};
-
-closePopUp = () => {
-  let modal = document.getElementById("myModal");
-  modal.style.display = "none";
-};
-window.onclick = event => {
-  modal = document.getElementById("myModal");
-
-  if (event.target == modal) {
-    modal.style.display = "none";
-  }
-};
-
-popUpAll = ele => {
-  document.getElementById("popUp_content").innerHTML = ele.content;
-  document.getElementById("iHead").innerHTML = ele.source.name;
-  let modal = document.getElementById("myModal");
-  modal.style.display = "block";
-};
