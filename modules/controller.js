@@ -46,4 +46,5 @@ export class Controller {
       .getElementById("myModal")
       .addEventListener("click", this.closePopUp);
   };
+
 }

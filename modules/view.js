@@ -16,11 +16,9 @@ export class View {
                 <input type="text" placeholder="Email Address" size="13" id="side-input">
                 <button class="side-button" id="validateEvent" type="button">Subscribe</button>`;
     document.getElementById("news").innerHTML = html;
-    document
-      .getElementById("validateEvent")
-      .addEventListener("click", function() {
-        this.Controller.validate();
-      });
+    document.getElementById("validateEvent").addEventListener("click", () => {
+      this.Controller.validate();
+    });
   };
 
   footer = () => {
@@ -30,6 +28,7 @@ export class View {
 
   body = () => {
     var completeData = "";
+    var halfData = "";
     var ichannel = "";
     this.Controller.getChannels().forEach(ele => {
       ichannel =
@@ -61,13 +60,15 @@ export class View {
         <div id="popUp_content" class="modal-body"><p>
         </p></div>
         <div class="modal-footer">
-        <h3>Till Date</h3></div></div></div></div><div class="side">
+        <h3>Till Date</h3></div></div></div></div>
+        <div class="side">
           <label class="side-label" ><strong>SELECT CATEGORY</strong></label><br />
           <select id="side-select">
           ${ichannel}
           </select><br /><br />
-          </div>`;
+        </div>`;
     document.getElementById("main").innerHTML = completeData;
+
     document.getElementById("side-select").addEventListener("change", () => {
       select();
     });
@@ -81,6 +82,40 @@ export class View {
     });
     var select = () => {
       var x = document.getElementById("side-select").value;
+      if (x === "ALL") {
+        this.Controller.getData().forEach((ele, i) => {
+          halfData =
+            halfData +
+            `<div class="div-content">
+                <img class="total-picture" src="${ele.urlToImage}">
+                <h2 class="total-heading">
+                ${ele.title}
+                </h2> 
+                <p class="total-date">
+                ${ele.publishedAt} 
+                </p> 
+                <p class="total-content">
+                ${ele.description} 
+                </p>
+                <button id="myBtn${i}" class="total-button"
+                type="button">Continue Reading</button></div>`;
+        });
+        halfData += `<div id="myModal" class="modal"><div class="modal-content"><div class="modal-header">
+          <span id="closePopUp" class="close">&times;</span><h2 id="iHead"></h2></div>
+          <div id="popUp_content" class="modal-body"><p>
+          </p></div>
+          <div class="modal-footer">
+          <h3>Till Date</h3></div></div></div></div>`;
+        document.getElementById("total").innerHTML = halfData;
+        this.Controller.getData().forEach((ele, i) => {
+          document.getElementById(`myBtn${i}`).addEventListener("click", () => {
+            this.Controller.popUpAll(ele);
+          });
+        });
+        document.getElementById(`closePopUp`).addEventListener("click", () => {
+          this.Controller.closePopUp();
+        });
+      }
       var html = "";
       let index = 0;
       let elemArray = [];
