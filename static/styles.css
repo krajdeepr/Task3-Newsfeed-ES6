@@ -40,6 +40,7 @@ body {
 .total-heading {
   color: x 283140;
   font-family: Futura, Trebuchet MS, Arial, sans-serif;
+  font-size: 21px;
 }
 
 .total-date {
@@ -53,6 +54,7 @@ body {
   position: relative;
   bottom: 15px;
   font-family: Candara, Calibri, Segoe, Segoe UI, Optima, Arial, sans-serif;
+  height: 77px;
 }
 
 .total-button {
@@ -67,9 +69,9 @@ body {
 }
 
 .side {
-  position: absolute;
-  right: 83px;
-  top: 147px;
+  left: 26px;
+  position: relative;
+  top: 29px;
 }
 
 .side-label {
@@ -118,9 +120,7 @@ body {
   font-size: 12px;
   clear: both;
   line-height: 35px;
-  position: fixed;
   bottom: 0;
-  width: 88vw;
 }
 
 .foot-text {
