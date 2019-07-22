@@ -28,7 +28,6 @@ export class View {
 
   body = () => {
     var completeData = "";
-    var halfData = "";
     var ichannel = "";
     this.Controller.getChannels().forEach(ele => {
       ichannel =
@@ -83,6 +82,7 @@ export class View {
     var select = () => {
       var x = document.getElementById("side-select").value;
       if (x === "ALL") {
+        let halfData="";
         this.Controller.getData().forEach((ele, i) => {
           halfData =
             halfData +
@@ -147,9 +147,7 @@ export class View {
           index++;
         }
       });
-      document.getElementById("side-select").addEventListener("change", () => {
-        select();
-      });
+      
       for (let k = 0; k < elemArray.length; k++) {
         document.getElementById(`myBtn${k}`).addEventListener("click", () => {
           this.Controller.popUpAll(elemArray[k]);
@@ -159,5 +157,8 @@ export class View {
         this.Controller.closePopUp();
       });
     };
+    document.getElementById("side-select").addEventListener("change", () => {
+      select();
+    });
   };
 }
