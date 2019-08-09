@@ -1,8 +1,6 @@
 export class View {
   constructor(Cnt) {
     this.Controller = Cnt;
-    this.gData = [];
-    this.channelList = [];
     this.all();
   }
   all = () => {
@@ -30,17 +28,13 @@ export class View {
     var completeData = "";
     var ichannel = "";
     this.Controller.getChannels().forEach(ele => {
-      ichannel =
-        ichannel +
-        `<option value='${ele}'>
+      ichannel += `<option value='${ele}'>
             ${ele} 
             </option>`;
     });
-    completeData = `<div id="total">`;
+    completeData = `<div id="entire"><div id="total"><div id="myHeadline" class="modal"></div>`;
     this.Controller.getData().forEach((ele, i) => {
-      completeData =
-        completeData +
-        `<div class="div-content">
+      completeData += `<div class="div-content">
             <img class="total-picture" src="${ele.urlToImage}">
             <h2 class="total-heading">
             ${ele.title}
@@ -56,15 +50,17 @@ export class View {
     });
     completeData += `<div id="myModal" class="modal"><div class="modal-content"><div class="modal-header">
         <span id="closePopUp" class="close">&times;</span><h2 id="iHead"></h2></div>
-        <div id="popUp_content" class="modal-body"><p>
-        </p></div>
+        <div id="popUp_content" class="modal-body"></div>
         <div class="modal-footer">
         <h3>Till Date</h3></div></div></div></div>
         <div class="side">
+        <button id="headBtn" class="head-button"
+        type="button">Headlines</button>
           <label class="side-label" ><strong>SELECT CATEGORY</strong></label><br />
           <select id="side-select">
           ${ichannel}
           </select><br /><br />
+        </div>
         </div>`;
     document.getElementById("main").innerHTML = completeData;
 
@@ -76,17 +72,20 @@ export class View {
         this.Controller.popUpAll(ele);
       });
     });
+    document.getElementById(`headBtn`).addEventListener("click", () => {
+      import("./headline.js").then(module => {
+        new module.Headline();
+      });
+    });
     document.getElementById(`closePopUp`).addEventListener("click", () => {
       this.Controller.closePopUp();
     });
     var select = () => {
       var x = document.getElementById("side-select").value;
       if (x === "ALL") {
-        let halfData="";
+        let halfData = `<div id="myHeadline" class="modal"></div>`;
         this.Controller.getData().forEach((ele, i) => {
-          halfData =
-            halfData +
-            `<div class="div-content">
+          halfData += `<div class="div-content">
                 <img class="total-picture" src="${ele.urlToImage}">
                 <h2 class="total-heading">
                 ${ele.title}
@@ -102,10 +101,9 @@ export class View {
         });
         halfData += `<div id="myModal" class="modal"><div class="modal-content"><div class="modal-header">
           <span id="closePopUp" class="close">&times;</span><h2 id="iHead"></h2></div>
-          <div id="popUp_content" class="modal-body"><p>
-          </p></div>
+          <div id="popUp_content" class="modal-body"></div>
           <div class="modal-footer">
-          <h3>Till Date</h3></div></div></div></div>`;
+          <h3>Till Date</h3></div></div></div>`;
         document.getElementById("total").innerHTML = halfData;
         this.Controller.getData().forEach((ele, i) => {
           document.getElementById(`myBtn${i}`).addEventListener("click", () => {
@@ -116,7 +114,7 @@ export class View {
           this.Controller.closePopUp();
         });
       }
-      var html = "";
+      var html = `<div id="myHeadline" class="modal"></div>`;
       let index = 0;
       let elemArray = [];
       this.Controller.getData().forEach((ele, i) => {
@@ -147,7 +145,7 @@ export class View {
           index++;
         }
       });
-      
+
       for (let k = 0; k < elemArray.length; k++) {
         document.getElementById(`myBtn${k}`).addEventListener("click", () => {
           this.Controller.popUpAll(elemArray[k]);

@@ -41,6 +41,7 @@ body {
   color: x 283140;
   font-family: Futura, Trebuchet MS, Arial, sans-serif;
   font-size: 21px;
+  height: 49px;
 }
 
 .total-date {
@@ -71,7 +72,7 @@ body {
 .side {
   left: 26px;
   position: relative;
-  top: 29px;
+  top: 94px;
 }
 .side-label {
   font-size: 11px;
@@ -231,4 +232,15 @@ body {
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
+}
+.head-button{
+  float: right;
+  margin-top: -52px;
+  margin-right: 185px;
+  background-color: #283140;
+  margin-bottom: 5px;
+  color: white;
+  height: 30px;
+  width: 150px;
+  border: 0;
 }
